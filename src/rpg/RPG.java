@@ -16,6 +16,8 @@ public class RPG {
     /**
      * @param args the command line arguments
      */
+    
+    // HEJSA!
     public static void main(String[] args) {
 
         Builder build = new Builder(5);
