@@ -21,15 +21,20 @@ public class RPG {
     //WEEEEEEEEEEE
     public static void main(String[] args) {
 
-        Builder build = new Builder(5);
+        Builder build = new Builder();
         Scanner scan = new  Scanner(System.in);
+        Player player = new Player();
         String command = "";
         String value = "";
         boolean playing = true;
+        Room currentRoom;
+        
         
         while(playing){
             String input = scan.nextLine();
             String[] data = input.split(" ");
+            
+            
             
             if(data.length == 2){
                 command = data[0];
@@ -43,6 +48,13 @@ public class RPG {
                 case "help":
                     break;
                 case "go":
+                    if(value.equals("south")){
+                        currentRoom = build.getRoom(player.getCurrentRoom());
+                        System.out.println(currentRoom.getRoomName());
+                        
+                    }else{
+                        System.out.println("You want to go where?");
+                    }
                     break;
                 case "take":
                     break;
@@ -54,8 +66,6 @@ public class RPG {
                     break;
                 case "quit":
                     break;
-                
-                
             }
         }
         
