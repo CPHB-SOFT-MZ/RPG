@@ -25,6 +25,8 @@ public class Builder {
         rooms.add(room1);
         Room room2 = new Room(2, "Third room", 2, 1, 2, 2);
         rooms.add(room2);
+        Room room3 = new Room(3, "Third room", 2, 1, 2, 2);
+        rooms.add(room3);
         
         //System.out.println(rooms.get(0));
         
