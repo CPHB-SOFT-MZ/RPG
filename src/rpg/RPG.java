@@ -18,6 +18,7 @@ public class RPG {
      */
     
     // HEJSA!
+    //WEEEEEEEEEEE
     public static void main(String[] args) {
 
         Builder build = new Builder(5);
