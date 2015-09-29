@@ -5,24 +5,27 @@
  */
 package rpg;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mzhje_000
  */
 public class Player {
-    //Make currentRoom an object
-    private Room currentRoom;
+    private ArrayList<Item> inventory;
     
     public Player(){
         
     }
     
-    public Room getCurrentRoom(){
-        return currentRoom;
+    public void addItem(Item item){
+        inventory.add(item);
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
     }
     
-    public void setCurrentRoom(Room room){
-        currentRoom = room;
-    }
+    
     
 }

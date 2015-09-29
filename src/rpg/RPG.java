@@ -29,8 +29,7 @@ public class RPG {
         String error;
         boolean playing = true;
         Room currentRoom;
-        player.setCurrentRoom(build.getRoom(0));
-        currentRoom = player.getCurrentRoom();
+        currentRoom = build.getRoom(0);
         
         
         while(playing){
@@ -88,12 +87,15 @@ public class RPG {
             }
             break;
                 case "take":
+                    for (Item item : currentRoom.getItems()) {
+                        player.addItem(item);
+                    }
                     break;
                 case "look":
                     break;
                 case "use":
                     break;
-                case "attack":
+                case "attack":                 
                     break;
                 case "quit":
                     break;

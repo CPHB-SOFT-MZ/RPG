@@ -20,15 +20,24 @@ public class Room {
     private Room south;
     private Room east;
     private Room west;
-    //public ArrayList<String> items = new ArrayList<>();
+    private ArrayList<Item> items;
     
     
     
-    public Room(int number, String name
-            /*, ArrayList<String> items*/){
+    public Room(int number, String name){
         roomNumber = number;
         roomName = name;
+        items = new ArrayList<>();
     }
+    
+    public void addItem(Item item){
+        items.add(item);
+    }
+    
+    public ArrayList<Item> getItems(){
+        return this.items;
+    }
+    
     
     public void setRoomNumber(int number){
         this.roomNumber = number;

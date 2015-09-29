@@ -5,21 +5,16 @@
  */
 package rpg;
 
-import java.util.List;
 import java.util.ArrayList;
 
 /**
  *
  * @author mzhje_000
  */
-public abstract class Item {
+public class Inventory {
     
-    private String name;
-    private String description;
-
     
-    public Item(String name, String des){
-        this.name = name;
-        this.description = des;
-    }
+    
+    
+    
 }

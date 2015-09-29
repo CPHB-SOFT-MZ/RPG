@@ -10,7 +10,12 @@ package rpg;
  * @author mzhje_000
  */
 public class Weapon extends Item{
-    public Weapon(String name, String des){
+    private int dmgMin;
+    private int dmgMax;
+    public Weapon(String name, String des, int dmgMin, int dmgMax){
         super(name, des);
+        this.dmgMin = dmgMin;
+        this.dmgMax = dmgMax;
+        
     }
 }

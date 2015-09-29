@@ -5,7 +5,8 @@
  */
 package rpg;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.*;
  */
 public class Builder {
         private List<Room> rooms = new ArrayList();
+        private List<Item> items = new ArrayList();
     
     public Builder() {
         
@@ -64,6 +66,8 @@ public class Builder {
         
         // Starting room
         rooms.get(0).setNorth(rooms.get(1));
+        rooms.get(0).addItem(new Weapon("Sword", "A long one", 3, 5));
+        rooms.get(0).addItem(new Weapon("Dagger", "A short one", 1, 3));
         
         // First
         rooms.get(1).setEast(rooms.get(2));
