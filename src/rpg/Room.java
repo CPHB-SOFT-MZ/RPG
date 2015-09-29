@@ -15,10 +15,10 @@ public class Room {
     private int roomNumber;
     private String roomName;
     private String roomDescription;
-    private final int north;
-    private final int south;
-    private final int east;
-    private final int west;
+    private int north;
+    private int south;
+    private int east;
+    private int west;
     //public ArrayList<String> items = new ArrayList<>();
     
     
@@ -54,31 +54,35 @@ public class Room {
         return roomName;
     }
     
-    public boolean getNorth(){
-        if(north != roomNumber){
-            return true;
-        }
-        return false;
+    public void setSouth(int i){
+        this.south = i;
+    }
+    public int getSouth(){
+        return this.south;
     }
     
-    public boolean getSouth(){
-        if(south != roomNumber){
-            return true;
-        }
-        return false;
+    public void setNorth(int i){
+        this.north = i;
     }
-    public boolean getEast(){
-        if(east != roomNumber){
-            return true;
-        }
-        return false;
+    public int getNorth(){
+        return this.north;
     }
-    public boolean checkWest(){
-        if(west != roomNumber){
-            return true;
-        }
-        return false;
+    
+    public void setEast(int i){
+        this.east = i;
     }
+    public int getEast(){
+        return this.east;
+    }
+    
+    public void setWest(int i){
+        this.west = i;
+    }
+    public int getWest(){
+        return this.west;
+    }
+    
+    
     
     /*public void setItems(String item){
         this.items.add(item);

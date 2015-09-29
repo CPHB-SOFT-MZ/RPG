@@ -20,4 +20,8 @@ public class Player {
         return currentRoom;
     }
     
+    public void setCurrentRoom(int i){
+        currentRoom = i;
+    }
+    
 }

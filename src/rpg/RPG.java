@@ -26,6 +26,7 @@ public class RPG {
         Player player = new Player();
         String command = "";
         String value = "";
+        String error;
         boolean playing = true;
         Room currentRoom;
         
@@ -48,10 +49,39 @@ public class RPG {
                 case "help":
                     break;
                 case "go":
+                    currentRoom = build.getRoom(player.getCurrentRoom());
+                    error = "I can't go that way";
                     if(value.equals("south")){
-                        currentRoom = build.getRoom(player.getCurrentRoom());
-                        System.out.println(currentRoom.getRoomName());
-                        
+                        if(player.getCurrentRoom() != currentRoom.getSouth()){
+                            player.setCurrentRoom(currentRoom.getSouth());
+                            System.out.println(player.getCurrentRoom());
+                        }else{
+                            System.out.println(error);
+                        }
+                    }
+                    else if(value.equals("north")){
+                        if(player.getCurrentRoom() != currentRoom.getNorth()){
+                            player.setCurrentRoom(currentRoom.getNorth());
+                            System.out.println(player.getCurrentRoom());
+                        }else{
+                            System.out.println(error);
+                        }
+                    }
+                    else if(value.equals("east")){
+                        if(player.getCurrentRoom() != currentRoom.getEast()){
+                            player.setCurrentRoom(currentRoom.getEast());
+                            System.out.println(player.getCurrentRoom());
+                        }else{
+                            System.out.println(error);
+                        }
+                    }
+                    else if(value.equals("west")){
+                        if(player.getCurrentRoom() != currentRoom.getWest()){
+                            player.setCurrentRoom(currentRoom.getWest());
+                            System.out.println(player.getCurrentRoom());
+                        }else{
+                            System.out.println(error);
+                        }
                     }else{
                         System.out.println("You want to go where?");
                     }
