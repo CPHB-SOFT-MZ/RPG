@@ -38,6 +38,10 @@ public class Room {
         return this.items;
     }
     
+    public void removeItems(){
+        this.items = null;
+    }
+    
     
     public void setRoomNumber(int number){
         this.roomNumber = number;

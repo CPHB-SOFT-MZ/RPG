@@ -35,17 +35,13 @@ public class RPG {
         while(playing){
             String input = scan.nextLine();
             String[] data = input.split(" ");
-            
-            
-            
-            
+
             if(data.length == 2){
                 command = data[0];
                 value = data[1];
             }else{
                 command = data[0];
             }
-            
             
             switch(command){
                 case "help":
@@ -87,9 +83,15 @@ public class RPG {
             }
             break;
                 case "take":
-                    for (Item item : currentRoom.getItems()) {
-                        player.addItem(item);
+                    if(currentRoom.getItems() != null){
+                        for (Item item : currentRoom.getItems()) {
+                            player.addItem(item);
+                        }
+                        currentRoom.removeItems();
+                    }else{
+                        System.out.println("There's nothing to pick up in this room");
                     }
+                    
                     break;
                 case "look":
                     break;
