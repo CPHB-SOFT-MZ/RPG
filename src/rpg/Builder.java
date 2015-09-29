@@ -19,47 +19,126 @@ public class Builder {
         /*List<String> descriptions = new ArrayList();
         List<String> titles = new ArrayList();*/
         // N S E W
-        rooms.add(new Room(0, "Starting room", 1, 0, 0, 0));
         
-        rooms.add(new Room(1, "Starting room", 1, 0, 2, 3));
+        rooms.add(new Room(0, "Starting room"));
         
-        rooms.add(new Room(2, "Starting room", 2, 2, 4, 1));
+        rooms.add(new Room(1, "Starting room"));
         
-        rooms.add(new Room(3, "Starting room", 10, 3, 1, 3));
+        rooms.add(new Room(2, "Starting room"));
         
-        rooms.add(new Room(4, "Starting room", 5, 4, 4, 2));
+        rooms.add(new Room(3, "Starting room"));
         
-        rooms.add(new Room(5, "Starting room", 5, 4, 6, 8));
+        rooms.add(new Room(4, "Starting room"));
         
-        rooms.add(new Room(6, "Starting room", 6, 7, 6, 5));
+        rooms.add(new Room(5, "Starting room"));
         
-        rooms.add(new Room(7, "Starting room", 6, 7, 7, 7));
+        rooms.add(new Room(6, "Starting room"));
         
-        rooms.add(new Room(8, "Starting room", 9, 2, 5, 8));
+        rooms.add(new Room(7, "Starting room"));
         
-        rooms.add(new Room(9, "Starting room", 9, 8, 9, 11));
+        rooms.add(new Room(8, "Starting room"));
         
-        rooms.add(new Room(10, "Starting room", 13, 3, 11, 12));
+        rooms.add(new Room(9, "Starting room"));
         
-        rooms.add(new Room(11, "Starting room", 11, 11, 11, 10));
+        rooms.add(new Room(10, "Starting room"));
         
-        rooms.add(new Room(12, "Starting room", 12, 12, 10, 16));
+        rooms.add(new Room(11, "Starting room"));
         
-        rooms.add(new Room(13, "Starting room", 13, 10, 14, 13));
+        rooms.add(new Room(12, "Starting room"));
         
-        rooms.add(new Room(14, "Starting room", 14, 1, 14, 13));
+        rooms.add(new Room(13, "Starting room"));
         
-        rooms.add(new Room(15, "Starting room", 15, 14, 15, 15));
+        rooms.add(new Room(14, "Starting room"));
         
-        rooms.add(new Room(16, "Starting room", 16, 16, 12, 16));
+        rooms.add(new Room(15, "Starting room"));
         
-        rooms.add(new Room(17, "Starting room", 18, 16, 17, 17));
+        rooms.add(new Room(16, "Starting room"));
         
-        rooms.add(new Room(18, "Starting room", 18, 17, 18, 18));
+        rooms.add(new Room(17, "Starting room"));
         
-        rooms.add(new Room(19, "Starting room", 19, 19, 19, 20));
+        rooms.add(new Room(18, "Starting room"));
         
-        rooms.add(new Room(20, "Starting room", 20, 20, 20, 20));
+        rooms.add(new Room(19, "Starting room"));
+        
+        rooms.add(new Room(20, "Starting room"));
+        
+        // Starting room
+        rooms.get(0).setNorth(rooms.get(1));
+        
+        // First
+        rooms.get(1).setEast(rooms.get(2));
+        rooms.get(1).setWest(rooms.get(3));
+        rooms.get(1).setSouth(rooms.get(0));
+        
+        // Second 
+        rooms.get(2).setEast(rooms.get(4));
+        rooms.get(2).setWest(rooms.get(1));
+        
+        //Third
+        rooms.get(3).setNorth(rooms.get(10));
+        rooms.get(3).setEast(rooms.get(1));
+        
+        //Room 4
+        rooms.get(4).setNorth(rooms.get(5));
+        rooms.get(4).setWest(rooms.get(2));
+        
+        //Room 5
+        rooms.get(5).setSouth(rooms.get(4));
+        rooms.get(5).setEast(rooms.get(6));
+        rooms.get(5).setWest(rooms.get(8));
+        
+        //Room 6
+        rooms.get(6).setSouth(rooms.get(7));
+        rooms.get(6).setWest(rooms.get(5));
+        
+        //Room 7
+        rooms.get(7).setNorth(rooms.get(6));
+        
+        //Room 8
+        rooms.get(8).setNorth(rooms.get(9));
+        rooms.get(8).setSouth(rooms.get(2));
+        rooms.get(8).setEast(rooms.get(5));
+        
+        //Room 9
+        rooms.get(9).setSouth(rooms.get(8));
+        rooms.get(9).setWest(rooms.get(11));
+        
+        //Room 10
+        rooms.get(10).setNorth(rooms.get(13));
+        rooms.get(10).setSouth(rooms.get(3));
+        rooms.get(10).setEast(rooms.get(11));
+        rooms.get(10).setWest(rooms.get(12));
+        
+        //Room 11
+        rooms.get(11).setWest(rooms.get(10));
+        
+        //Room 12
+        rooms.get(12).setEast(rooms.get(10));
+        rooms.get(12).setWest(rooms.get(16));
+        
+        //Room 13
+        rooms.get(13).setSouth(rooms.get(10));
+        rooms.get(13).setEast(rooms.get(14));
+        
+        //Room 14
+        rooms.get(14).setWest(rooms.get(13));
+        
+        //Room 15
+        rooms.get(15).setSouth(rooms.get(14));
+        
+        //Room 16
+        rooms.get(16).setEast(rooms.get(12));
+        
+        //Room 17
+        rooms.get(17).setNorth(rooms.get(18));
+        rooms.get(17).setSouth(rooms.get(16));
+        
+        //Room 18
+        rooms.get(18).setSouth(rooms.get(17));
+        
+        // Room 19
+        rooms.get(19).setEast(rooms.get(17));
+        rooms.get(19).setWest(rooms.get(20));
     }
     
     public Room getRoom(int i){

@@ -15,22 +15,19 @@ public class Room {
     private int roomNumber;
     private String roomName;
     private String roomDescription;
-    private int north;
-    private int south;
-    private int east;
-    private int west;
+    // Make North, South, East, West as an object instead of int.
+    private Room north;
+    private Room south;
+    private Room east;
+    private Room west;
     //public ArrayList<String> items = new ArrayList<>();
     
     
     
-    public Room(int number, String name, int north, int south, int east, int west
+    public Room(int number, String name
             /*, ArrayList<String> items*/){
         roomNumber = number;
         roomName = name;
-        this.north = north;
-        this.south = south;
-        this.east = east;
-        this.west = west;
     }
     
     public void setRoomNumber(int number){
@@ -54,31 +51,31 @@ public class Room {
         return roomName;
     }
     
-    public void setSouth(int i){
-        this.south = i;
+    public void setSouth(Room room){
+        this.south = room;
     }
-    public int getSouth(){
+    public Room getSouth(){
         return this.south;
     }
     
-    public void setNorth(int i){
-        this.north = i;
+    public void setNorth(Room room){
+        this.north = room;
     }
-    public int getNorth(){
+    public Room getNorth(){
         return this.north;
     }
     
-    public void setEast(int i){
-        this.east = i;
+    public void setEast(Room room){
+        this.east = room;
     }
-    public int getEast(){
+    public Room getEast(){
         return this.east;
     }
     
-    public void setWest(int i){
-        this.west = i;
+    public void setWest(Room room){
+        this.west = room;
     }
-    public int getWest(){
+    public Room getWest(){
         return this.west;
     }
     

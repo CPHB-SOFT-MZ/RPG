@@ -10,18 +10,19 @@ package rpg;
  * @author mzhje_000
  */
 public class Player {
-    private int currentRoom;
+    //Make currentRoom an object
+    private Room currentRoom;
     
     public Player(){
-        currentRoom = 0;
+        
     }
     
-    public int getCurrentRoom(){
+    public Room getCurrentRoom(){
         return currentRoom;
     }
     
-    public void setCurrentRoom(int i){
-        currentRoom = i;
+    public void setCurrentRoom(Room room){
+        currentRoom = room;
     }
     
 }
