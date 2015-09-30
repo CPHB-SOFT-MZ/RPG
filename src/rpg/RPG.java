@@ -52,6 +52,7 @@ public class RPG {
                         case "south":
                             if(currentRoom.getSouth() != null){
                                 currentRoom = currentRoom.getSouth();
+                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -59,6 +60,7 @@ public class RPG {
                         case "north":
                             if(currentRoom.getNorth() != null){
                                 currentRoom = currentRoom.getNorth();
+                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -66,6 +68,7 @@ public class RPG {
                         case "east":
                             if(currentRoom.getEast() != null){
                                 currentRoom = currentRoom.getEast();
+                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -73,6 +76,7 @@ public class RPG {
                         case "west":
                             if(currentRoom.getWest() != null){
                                 currentRoom = currentRoom.getWest();
+                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -98,6 +102,8 @@ public class RPG {
                 case "use":
                     break;
                 case "attack":                 
+                    break;
+                case "inventory":
                     break;
                 case "quit":
                     break;

@@ -66,8 +66,9 @@ public class Builder {
         
         // Starting room
         rooms.get(0).setNorth(rooms.get(1));
-        rooms.get(0).addItem(new Weapon("Sword", "A long one", 3, 5));
-        rooms.get(0).addItem(new Weapon("Dagger", "A short one", 1, 3));
+        rooms.get(0).setRoomDesc("The room is narrow, one exit is blocked by fallen rocks, some light shines thorugh");
+        rooms.get(0).addItem(new Equipment("Sword", "A long one", 3, 5));
+        rooms.get(0).addItem(new Equipment("Dagger", "A short one", 1, 3));
         
         // First
         rooms.get(1).setEast(rooms.get(2));
@@ -97,6 +98,7 @@ public class Builder {
         
         //Room 7
         rooms.get(7).setNorth(rooms.get(6));
+        rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull" , 1));
         
         //Room 8
         rooms.get(8).setNorth(rooms.get(9));
@@ -129,6 +131,7 @@ public class Builder {
         
         //Room 15
         rooms.get(15).setSouth(rooms.get(14));
+        rooms.get(15).addItem(new Consumable("Old Bicycle Key", "Some ugly key", 1));
         
         //Room 16
         rooms.get(16).setEast(rooms.get(12));
