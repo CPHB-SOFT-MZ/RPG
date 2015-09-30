@@ -22,4 +22,9 @@ public abstract class Item {
         this.name = name;
         this.description = des;
     }
+
+    @Override
+    public String toString() {
+        return "Item: " + name;
+    }
 }

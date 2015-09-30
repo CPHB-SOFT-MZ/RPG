@@ -21,7 +21,7 @@ public class Player {
     public Player(){
         inventory = new ArrayList<Item>();
     }
-
+    
     public void addItem(Item item){
         inventory.add(item);
     }

@@ -104,6 +104,7 @@ public class RPG {
                 case "attack":                 
                     break;
                 case "inventory":
+                    System.out.print("Your Inventory: \n" + player.getInventory().toString());
                     break;
                 case "quit":
                     break;

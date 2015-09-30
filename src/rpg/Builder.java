@@ -74,6 +74,7 @@ public class Builder {
         rooms.get(1).setEast(rooms.get(2));
         rooms.get(1).setWest(rooms.get(3));
         rooms.get(1).setSouth(rooms.get(0));
+        rooms.get(1).setRoomDesc("A big hall opens in front of you, it's run down and dark but sereral door lead to other rooms");
         
         // Second 
         rooms.get(2).setEast(rooms.get(4));
