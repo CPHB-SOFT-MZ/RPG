@@ -45,6 +45,7 @@ public class RPG {
             
             switch(command){
                 case "help":
+                    System.out.println(player.getCurHP());
                     break;
                 case "go":
                     error = "I can't go that way";
@@ -52,7 +53,7 @@ public class RPG {
                         case "south":
                             if(currentRoom.getSouth() != null){
                                 currentRoom = currentRoom.getSouth();
-                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
+                                System.out.println(currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -60,7 +61,7 @@ public class RPG {
                         case "north":
                             if(currentRoom.getNorth() != null){
                                 currentRoom = currentRoom.getNorth();
-                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
+                                System.out.println(currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -68,7 +69,7 @@ public class RPG {
                         case "east":
                             if(currentRoom.getEast() != null){
                                 currentRoom = currentRoom.getEast();
-                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
+                                System.out.println(currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -76,7 +77,7 @@ public class RPG {
                         case "west":
                             if(currentRoom.getWest() != null){
                                 currentRoom = currentRoom.getWest();
-                                System.out.println("You pass though a door. " + currentRoom.getRoomDesc());
+                                System.out.println(currentRoom.getRoomDesc());
                             }else{
                                 System.out.println(error);
                             }
@@ -100,13 +101,41 @@ public class RPG {
                 case "look":
                     break;
                 case "use":
+                    switch(value){
+                        case "potion":
+                            
+                            if(player.getInventory().toString().contains("Potion")){
+                                for(Item item : player.getInventory()){
+                                    System.out.println(item.getName());
+                                    if(item.getName().equals("Potion")){
+                                    if(item instanceof Consumable){
+                                        Consumable consumable = (Consumable) item;
+                                        player.setCurHP(player.getMaxHP());
+                                        player.getInventory().remove(consumable);
+                                        System.out.println("Jeg brugte en potion yay!");
+                                        break;
+                                    }
+                                    }
+                                }
+                            }
+                            break;
+                        case "key":
+                            break;
+                        case "poison":
+                            break;
+                    }
                     break;
                 case "attack":                 
                     break;
                 case "inventory":
-                    System.out.print("Your Inventory: \n" + player.getInventory().toString());
+                    System.out.println("Your inventory:");
+                    for(Item item : player.getInventory()){
+                        System.out.println(item);
+                    }
                     break;
                 case "quit":
+                    System.out.println("Goodbye noob...");
+                    playing = false;
                     break;
             }
         }

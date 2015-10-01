@@ -10,9 +10,8 @@ package rpg;
  * @author mzhje_000
  */
 public class Consumable extends Item {
-    private int count;
-    public Consumable(String name, String des, int count){
+    public Consumable(String name, String des){
         super(name, des);
-        this.count = count;
     }
+    
 }

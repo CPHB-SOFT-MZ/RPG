@@ -15,8 +15,8 @@ public class Player {
     private ArrayList<Item> inventory;
     private String Name;
     private int Level;
-    private int MaxHP;
-    private int CurHP;
+    private int MaxHP = 50;
+    private int CurHP = 30;
     
     public Player(){
         inventory = new ArrayList<Item>();
