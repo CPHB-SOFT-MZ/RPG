@@ -48,7 +48,7 @@ public class RPG {
                     System.out.println(player.getCurHP());
                     break;
                 case "go":
-                    error = "I can't go that way";
+                    error = "I can't go that way!";
                     switch (value) {
                         case "south":
                             if(currentRoom.getSouth() != null){

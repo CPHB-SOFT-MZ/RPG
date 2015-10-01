@@ -70,6 +70,7 @@ public class Builder {
         rooms.get(0).addItem(new Equipment("Sword", "A long one", 3, 5));
         rooms.get(0).addItem(new Equipment("Dagger", "A short one", 1, 3));
         rooms.get(0).addItem(new Consumable("Potion", "Heals up to full HP"));
+        rooms.get(0).addItem(new Consumable("Potion", "Heals up to full HP"));
         
         // First
         rooms.get(1).setEast(rooms.get(2));
