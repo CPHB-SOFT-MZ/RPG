@@ -15,8 +15,9 @@ public class Player {
     private ArrayList<Item> inventory;
     private String Name;
     private int Level;
-    private int MaxHP = 50;
+    private int MaxHP = 30;
     private int CurHP = 30;
+    private Weapon curWeapon;
     
     public Player(){
         inventory = new ArrayList<Item>();
@@ -60,6 +61,14 @@ public class Player {
 
     public void setCurHP(int CurHP) {
         this.CurHP = CurHP;
+    }
+    
+    public void setCurWeapon(Weapon weapon){
+        this.curWeapon = weapon;
+    }
+    
+    public Weapon getCurWeapon(){
+        return curWeapon;
     }
     
     

@@ -11,18 +11,44 @@ package rpg;
  */
 public class Enemy {
     
-    private String name;
-    private String description;
-    private int dmgMin;
-    private int dmgmax;
+    private final String name;
+    private final String description;
+    private final int dmgMin;
+    private final int dmgMax;
     private int HP;
 
-    public Enemy(String name, String description, int dmgMin, int dmgmax, int HP) {
+    public Enemy(String name, String description, int dmgMin, int dmgMax, int HP) {
         this.name = name;
         this.description = description;
         this.dmgMin = dmgMin;
-        this.dmgmax = dmgmax;
+        this.dmgMax = dmgMax;
         this.HP = HP;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getDmgMin() {
+        return dmgMin;
+    }
+
+    public int getDmgMax() {
+        return dmgMax;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+    
+    public void setHP(int hp){
+        this.HP = this.HP - hp;
+    }
+    
+    
     
 }

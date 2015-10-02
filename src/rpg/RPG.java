@@ -5,6 +5,7 @@
  */
 package rpg;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,13 @@ public class RPG {
         boolean playing = true;
         Room currentRoom;
         currentRoom = build.getRoom(0);
-        
+        player.setCurWeapon(new Weapon("Dagger", "Short dagger", 1, 3));
+        Random rnd = new Random();
+        int maxDmg = player.getCurWeapon().getMaxDmg();
+        int minDmg = player.getCurWeapon().getMinDmg();
+        IO out = new IO();
+        Enemy enemy;
+
         
         while(playing){
             String input = scan.nextLine();
@@ -45,7 +52,6 @@ public class RPG {
             
             switch(command){
                 case "help":
-                    System.out.println(player.getCurHP());
                     break;
                 case "go":
                     error = "I can't go that way!";
@@ -85,6 +91,15 @@ public class RPG {
                         default:
                             System.out.println("You want to go where?");
                             break;
+                    }
+            if(currentRoom.getEnemy() != null){
+                System.out.println("A monster appears");
+                enemy = currentRoom.getEnemy();
+                int enemyDmg = (int) Math.floor((Math.random() * enemy.getDmgMax()) + enemy.getDmgMin());
+                player.setCurHP(player.getCurHP()-enemyDmg);
+                System.out.println(player.getCurHP());
+            }else{
+                enemy = null;
             }
             break;
                 case "take":
@@ -92,11 +107,23 @@ public class RPG {
                         for (Item item : currentRoom.getItems()) {
                             player.addItem(item);
                         }
+                       
                         currentRoom.removeItems();
                     }else{
                         System.out.println("There's nothing to pick up in this room");
                     }
-                    
+                        for(int i = 0; i < player.getInventory().size(); i++){
+                            Item item = player.getInventory().get(i);
+                            if(item instanceof Weapon){
+                                Weapon weapon = (Weapon) item;
+                                if(weapon.getMaxDmg() > player.getCurWeapon().getMaxDmg()){
+                                    player.setCurWeapon(weapon);
+                                    minDmg = player.getCurWeapon().getMinDmg();
+                                    maxDmg = player.getCurWeapon().getMaxDmg();
+                                    
+                                }
+                            }
+                        }                    
                     break;
                 case "look":
                     break;
@@ -104,7 +131,8 @@ public class RPG {
                     switch(value){
                         case "potion":
                             
-                            if(player.getInventory().toString().contains("Potion")){
+                            if(player.getInventory().toString().contains("Potion") 
+                                    && player.getCurHP() != player.getMaxHP()){
                                 for(Item item : player.getInventory()){
                                     System.out.println(item.getName());
                                     if(item.getName().equals("Potion")){
@@ -117,6 +145,9 @@ public class RPG {
                                     }
                                     }
                                 }
+                            }else{
+                                System.out.println("You already have full HP."
+                                        + " No reason to use a potion!");
                             }
                             break;
                         case "key":
@@ -125,7 +156,22 @@ public class RPG {
                             break;
                     }
                     break;
-                case "attack":                 
+                case "attack":   
+                    if(currentRoom.getEnemy() != null){
+                        enemy = currentRoom.getEnemy();
+                        int playerDmg = rnd.nextInt((maxDmg + 1) - minDmg) + minDmg;
+                       currentRoom.getEnemy().setHP(playerDmg);                        
+                        System.out.println("You dealt " + playerDmg + " damage to the " + enemy.getName());
+                        System.out.println("Your HP: " + player.getCurHP());
+                        System.out.println("Monster HP: " + enemy.getHP());
+                        if(enemy.getHP() <= 0){
+                            currentRoom.removeEnemy();
+                            out.write("You killed the " + enemy.getName());
+                        }
+                    }else{
+                        System.out.println("There's nothing to attack here");
+                    }
+                    
                     break;
                 case "inventory":
                     System.out.println("Your inventory:");

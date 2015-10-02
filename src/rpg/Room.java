@@ -21,6 +21,7 @@ public class Room {
     private Room east;
     private Room west;
     private ArrayList<Item> items;
+    private Enemy enemy;
     
     
     
@@ -41,6 +42,20 @@ public class Room {
     public void removeItems(){
         this.items = null;
     }
+    
+    public void addEnemy(Enemy enemy){
+        this.enemy = enemy;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+    
+    public void removeEnemy(){
+        this.enemy = null;
+    }
+    
+    
     
     
     public void setRoomNumber(int number){

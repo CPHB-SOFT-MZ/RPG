@@ -67,9 +67,7 @@ public class Builder {
         // Starting room
         rooms.get(0).setNorth(rooms.get(1));
         rooms.get(0).setRoomDesc("The room is narrow, one exit is blocked by fallen rocks, some light shines thorugh");
-        rooms.get(0).addItem(new Equipment("Sword", "A long one", 3, 5));
-        rooms.get(0).addItem(new Equipment("Dagger", "A short one", 1, 3));
-        rooms.get(0).addItem(new Consumable("Potion", "Heals up to full HP"));
+        rooms.get(0).addItem(new Weapon("Short Sword", "A short one", 4, 6));
         rooms.get(0).addItem(new Consumable("Potion", "Heals up to full HP"));
         
         // First
@@ -77,6 +75,7 @@ public class Builder {
         rooms.get(1).setWest(rooms.get(3));
         rooms.get(1).setSouth(rooms.get(0));
         rooms.get(1).setRoomDesc("A big hall opens in front of you, it's run down and dark but sereral door lead to other rooms");
+        rooms.get(1).addEnemy(new Enemy("Skeleton", "A tiny one", 1, 3, 12));
         
         // Second 
         rooms.get(2).setEast(rooms.get(4));

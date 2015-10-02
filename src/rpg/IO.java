@@ -9,9 +9,12 @@ package rpg;
  *
  * @author mzhje_000
  */
-public class Equipment extends Item{
+public class IO {
+    public IO(){
+        
+    }
     
-    public Equipment(String name, String des){
-        super(name, des);
+    public void write(String message){
+        System.out.println(message);
     }
 }
