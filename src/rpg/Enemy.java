@@ -16,6 +16,7 @@ public class Enemy {
     private final int dmgMin;
     private final int dmgMax;
     private int HP;
+    private int dmgActual;
 
     public Enemy(String name, String description, int dmgMin, int dmgMax, int HP) {
         this.name = name;
@@ -23,6 +24,7 @@ public class Enemy {
         this.dmgMin = dmgMin;
         this.dmgMax = dmgMax;
         this.HP = HP;
+       
     }
 
     public String getName() {
@@ -47,6 +49,11 @@ public class Enemy {
     
     public void setHP(int hp){
         this.HP = this.HP - hp;
+    }
+    
+    public int getDmgActual(){
+        this.dmgActual = (int) Math.floor((Math.random() * dmgMax) + dmgMin);
+        return dmgActual;
     }
     
     

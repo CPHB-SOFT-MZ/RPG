@@ -17,9 +17,7 @@ public class RPG {
     /**
      * @param args the command line arguments
      */
-    
-    // HEJSA!
-    //WEEEEEEEEEEEEEEEEEEEE
+
     public static void main(String[] args) {
 
         Builder build = new Builder();
@@ -93,11 +91,12 @@ public class RPG {
                             break;
                     }
             if(currentRoom.getEnemy() != null){
-                System.out.println("A monster appears");
                 enemy = currentRoom.getEnemy();
+                System.out.println("A " + enemy.getName() + " appears");
                 int enemyDmg = (int) Math.floor((Math.random() * enemy.getDmgMax()) + enemy.getDmgMin());
                 player.setCurHP(player.getCurHP()-enemyDmg);
-                System.out.println(player.getCurHP());
+                System.out.println("The " + enemy.getName() + " hits you for: " + enemyDmg);
+                System.out.println("Your current HP: " + player.getCurHP());
             }else{
                 enemy = null;
             }
@@ -159,8 +158,11 @@ public class RPG {
                 case "attack":   
                     if(currentRoom.getEnemy() != null){
                         enemy = currentRoom.getEnemy();
+                        int enemyDmg = enemy.getDmgActual();
+                        player.setCurHP(player.getCurHP()-enemyDmg);
                         int playerDmg = rnd.nextInt((maxDmg + 1) - minDmg) + minDmg;
-                       currentRoom.getEnemy().setHP(playerDmg);                        
+                       currentRoom.getEnemy().setHP(playerDmg);    
+                        System.out.println("The " + enemy.getName() + " hit you for: " + enemyDmg);
                         System.out.println("You dealt " + playerDmg + " damage to the " + enemy.getName());
                         System.out.println("Your HP: " + player.getCurHP());
                         System.out.println("Monster HP: " + enemy.getHP());
