@@ -66,7 +66,7 @@ public class Builder {
         
         // Starting room
         rooms.get(0).setNorth(rooms.get(1));
-        rooms.get(0).setRoomDesc("The room is narrow, one exit is blocked by fallen rocks, some light shines thorugh");
+        rooms.get(0).setRoomDesc("The room is narrow, one exit is blocked by fallen rocks, some light shines thorugh.");
         rooms.get(0).addItem(new Weapon("Short Sword", "A short one", 4, 6));
         rooms.get(0).addItem(new Consumable("Potion", "Heals up to full HP"));
         
@@ -74,48 +74,57 @@ public class Builder {
         rooms.get(1).setEast(rooms.get(2));
         rooms.get(1).setWest(rooms.get(3));
         rooms.get(1).setSouth(rooms.get(0));
-        rooms.get(1).setRoomDesc("A big hall opens in front of you, it's run down and dark but sereral door lead to other rooms");
+        rooms.get(1).setRoomDesc("A big hall opens in front of you, it's run down and dark but serveral doors lead to other rooms.");
         rooms.get(1).addEnemy(new Enemy("Skeleton", "A tiny one", 1, 3, 12));
         
         // Second 
         rooms.get(2).setEast(rooms.get(4));
         rooms.get(2).setWest(rooms.get(1));
+        rooms.get(2).setRoomDesc("The room is full of rusty old equipment and was problably used for storage, there is a door at the other end.");
         
         //Third
         rooms.get(3).setNorth(rooms.get(10));
         rooms.get(3).setEast(rooms.get(1));
+        rooms.get(3).setRoomDesc("Most of the celing has caved in, but it is still possible to reach another door");
         
         //Room 4
         rooms.get(4).setNorth(rooms.get(5));
         rooms.get(4).setWest(rooms.get(2));
+        rooms.get(4).setRoomDesc("The floor resembles a small lake, here the air stinks of mould");
         
         //Room 5
         rooms.get(5).setSouth(rooms.get(4));
         rooms.get(5).setEast(rooms.get(6));
         rooms.get(5).setWest(rooms.get(8));
+        rooms.get(5).setRoomDesc("There is nothing of interest here. Two doors lead deeper into the mine");
         
         //Room 6
         rooms.get(6).setSouth(rooms.get(7));
         rooms.get(6).setWest(rooms.get(5));
+        rooms.get(6).setRoomDesc("This room is in remarkable condition, and is full of comfortable chairs");
         
         //Room 7
         rooms.get(7).setNorth(rooms.get(6));
-        //rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull" , 1));
+        rooms.get(7).setRoomDesc("This room has no other exits, it is however full of things");
+        rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull"));
         
         //Room 8
         rooms.get(8).setNorth(rooms.get(9));
         rooms.get(8).setSouth(rooms.get(2));
         rooms.get(8).setEast(rooms.get(5));
+        rooms.get(8).setRoomDesc("Here the floor is completely red, there is a door on one side and a hole leading down into antoher room");
         
         //Room 9
         rooms.get(9).setSouth(rooms.get(8));
         rooms.get(9).setWest(rooms.get(11));
+        rooms.get(9).setRoomDesc("This room is a dead end, but a shaft leads somewhere");
         
         //Room 10
         rooms.get(10).setNorth(rooms.get(13));
         rooms.get(10).setSouth(rooms.get(3));
         rooms.get(10).setEast(rooms.get(11));
         rooms.get(10).setWest(rooms.get(12));
+        rooms.get(10).setRoomDesc("There is doors on all sides, some old signs read exit and kitchen, but you can't tell where they used to point");
         
         //Room 11
         rooms.get(11).setWest(rooms.get(10));
