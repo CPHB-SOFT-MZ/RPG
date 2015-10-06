@@ -9,7 +9,7 @@ package rpg;
  *
  * @author mzhje_000
  */
-public class Weapon extends Equipment {
+public class Weapon extends Item {
     private int maxDmg, minDmg;
     
     public Weapon(String name, String des, int minDmg, int maxDmg){

@@ -21,7 +21,6 @@ public class RPG {
     public static void main(String[] args) {
         
         Builder build = new Builder();
-        Scanner scan = new  Scanner(System.in);
         Player player = new Player();
         String command;
         String value = "";
@@ -33,12 +32,13 @@ public class RPG {
         Random rnd = new Random();
         int maxDmg = player.getCurWeapon().getMaxDmg();
         int minDmg = player.getCurWeapon().getMinDmg();
-        IO out = new IO();
+        IO controller = new IO();
         Enemy enemy;
-
+        Room prevRoom = null;
+        boolean bound = false;
         
         while(playing){
-            String input = scan.nextLine();
+            String input = controller.read();
             String[] data = input.split(" ");
 
             if(data.length == 2){
@@ -53,54 +53,71 @@ public class RPG {
                     break;
                 case "go":
                     error = "I can't go that way!";
+                    
+
                     switch (value) {
                         case "south":
-                            if(currentRoom.getSouth() != null){
+                            if(currentRoom.getSouth() != null && !bound){
+                                prevRoom = currentRoom;
                                 currentRoom = currentRoom.getSouth();
-                                System.out.println(currentRoom.getRoomDesc());
+                                controller.writeLine(currentRoom.getRoomDesc());
                             }else{
-                                System.out.println(error);
+                                controller.writeLine(error);
                             }
                             break;
                         case "north":
-                            if(currentRoom.getNorth() != null){
+                            if(currentRoom.getNorth() != null && !bound){
+                                prevRoom = currentRoom;
                                 currentRoom = currentRoom.getNorth();
-                                System.out.println(currentRoom.getRoomDesc());
+                                controller.writeLine(currentRoom.getRoomDesc());
                             }else{
-                                System.out.println(error);
+                                controller.writeLine(error);
                             }
                             break;
                         case "east":
-                            if(currentRoom.getEast() != null){
+                            if(currentRoom.getEast() != null && !bound){
+                                prevRoom = currentRoom;
                                 currentRoom = currentRoom.getEast();
-                                System.out.println(currentRoom.getRoomDesc());
+                                controller.writeLine(currentRoom.getRoomDesc());
                             }else{
-                                System.out.println(error);
+                                controller.writeLine(error);
                             }
                             break;
                         case "west":
-                            if(currentRoom.getWest() != null){
+                            if(currentRoom.getWest() != null && !bound){
+                                prevRoom = currentRoom;
                                 currentRoom = currentRoom.getWest();
-                                System.out.println(currentRoom.getRoomDesc());
+                                controller.writeLine(currentRoom.getRoomDesc());
                             }else{
-                                System.out.println(error);
+                                controller.writeLine(error);
+                            }
+                            break;
+                    
+                        case "back":
+                            if(bound){
+                                controller.writeLine("You flee from the enemy and end up in the previous room.");
+                                currentRoom = prevRoom;
+                                bound = false;
                             }
                             break;
                         default:
-                            System.out.println("You want to go where?");
+                            controller.writeLine("You want to go where?");
                             break;
                     }
-            if(currentRoom.getEnemy() != null){
-                enemy = currentRoom.getEnemy();
-                System.out.println("A " + enemy.getName() + " appears");
-                int enemyDmg = (int) Math.floor((Math.random() * enemy.getDmgMax()) + enemy.getDmgMin());
-                player.setCurHP(player.getCurHP()-enemyDmg);
-                System.out.println("The " + enemy.getName() + " hits you for: " + enemyDmg);
-                System.out.println("Your current HP: " + player.getCurHP());
-            }else{
-                enemy = null;
-            }
-            break;
+
+                if(currentRoom.getEnemy() != null){
+                    bound = true;
+                    enemy = currentRoom.getEnemy();
+                    controller.writeLine("A " + enemy.getName() + " appears");
+                    int enemyDmg = enemy.getDmgActual();
+                    player.setCurHP(player.getCurHP()-enemyDmg);
+                    controller.write("The " + enemy.getName() + " hits you for: " + enemyDmg);
+                    controller.write("Your current HP: " + player.getCurHP());
+                }else{
+                    enemy = null;
+                }
+                break;
+            
                 case "take":
                     if(currentRoom.getItems() != null){
                         for (Item item : currentRoom.getItems()) {
@@ -109,7 +126,7 @@ public class RPG {
                        
                         currentRoom.removeItems();
                     }else{
-                        System.out.println("There's nothing to pick up in this room");
+                        controller.writeLine("There's nothing to pick up in this room");
                     }
                         for(int i = 0; i < player.getInventory().size(); i++){
                             Item item = player.getInventory().get(i);
@@ -133,19 +150,19 @@ public class RPG {
                             if(player.getInventory().toString().contains("Potion") 
                                     && player.getCurHP() != player.getMaxHP()){
                                 for(Item item : player.getInventory()){
-                                    System.out.println(item.getName());
+                                    controller.write(item.getName());
                                     if(item.getName().equals("Potion")){
                                     if(item instanceof Consumable){
                                         Consumable consumable = (Consumable) item;
                                         player.setCurHP(player.getMaxHP());
                                         player.getInventory().remove(consumable);
-                                        System.out.println("Jeg brugte en potion yay!");
+                                        controller.writeLine("Jeg brugte en potion yay!");
                                         break;
                                     }
                                     }
                                 }
                             }else{
-                                System.out.println("You already have full HP."
+                                controller.writeLine("You already have full HP."
                                         + " No reason to use a potion!");
                             }
                             break;
@@ -162,32 +179,32 @@ public class RPG {
                         player.setCurHP(player.getCurHP()-enemyDmg);
                         int playerDmg = rnd.nextInt((maxDmg + 1) - minDmg) + minDmg;
                        currentRoom.getEnemy().setHP(playerDmg);    
-                        System.out.println("The " + enemy.getName() + " hit you for: " + enemyDmg);
-                        System.out.println("You dealt " + playerDmg + " damage to the " + enemy.getName());
-                        System.out.println("Your HP: " + player.getCurHP());
-                        System.out.println("Monster HP: " + enemy.getHP());
+                        controller.writeLine("The " + enemy.getName() + " hit you for: " + enemyDmg);
+                        controller.write("You dealt " + playerDmg + " damage to the " + enemy.getName());
+                        controller.write("Your HP: " + player.getCurHP());
+                        controller.write("Monster HP: " + enemy.getHP());
                         if(enemy.getHP() <= 0){
                             currentRoom.removeEnemy();
-                            out.write("You killed the " + enemy.getName());
+                            controller.writeLine("You killed the " + enemy.getName());
                         }
                     }else{
-                        System.out.println("There's nothing to attack here");
+                        controller.writeLine("There's nothing to attack here");
                     }
                     
                     break;
                 case "inventory":
-                    System.out.println("Your inventory:");
+                    controller.writeLine("Your inventory:");
                     for(Item item : player.getInventory()){
-                        System.out.println(item);
+                        controller.write(item);
                     }
                     break;
                 case "quit":
-                    System.out.println("Goodbye noob...");
+                    controller.writeLine("Goodbye noob...");
                     playing = false;
                     break;
             }
             if(player.getCurHP() <= 0){
-                System.out.println("You've died. Game over!");
+                controller.writeLine("You've died. Game over!");
                 playing = false;
             }
         }

@@ -9,7 +9,7 @@ package rpg;
  *
  * @author mzhje_000
  */
-public class Armor extends Equipment {
+public class Armor extends Item {
     private int armorVal;
     
     public Armor(String name, String des, int armorVal){

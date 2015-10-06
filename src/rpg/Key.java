@@ -9,9 +9,9 @@ package rpg;
  *
  * @author mzhje_000
  */
-public class Equipment extends Item{
-    
-    public Equipment(String name, String des){
+public class Key extends Item {
+    public Key(String name, String des) {
         super(name, des);
     }
+    
 }
