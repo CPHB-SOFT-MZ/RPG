@@ -119,27 +119,29 @@ public class RPG {
                 break;
             
                 case "take":
-                    if(currentRoom.getItems() != null){
-                        for (Item item : currentRoom.getItems()) {
-                            player.addItem(item);
-                        }
-                       
-                        currentRoom.removeItems();
-                    }else{
-                        controller.writeLine("There's nothing to pick up in this room");
-                    }
-                        for(int i = 0; i < player.getInventory().size(); i++){
-                            Item item = player.getInventory().get(i);
-                            if(item instanceof Weapon){
-                                Weapon weapon = (Weapon) item;
-                                if(weapon.getMaxDmg() > player.getCurWeapon().getMaxDmg()){
-                                    player.setCurWeapon(weapon);
-                                    minDmg = player.getCurWeapon().getMinDmg();
-                                    maxDmg = player.getCurWeapon().getMaxDmg();
-                                    
-                                }
+                    if(!bound){
+                        if(currentRoom.getItems() != null){
+                            for (Item item : currentRoom.getItems()) {
+                                player.addItem(item);
                             }
-                        }                    
+
+                            currentRoom.removeItems();
+                        }else{
+                            controller.writeLine("There's nothing to pick up in this room");
+                        }
+                            for(int i = 0; i < player.getInventory().size(); i++){
+                                Item item = player.getInventory().get(i);
+                                if(item instanceof Weapon){
+                                    Weapon weapon = (Weapon) item;
+                                    if(weapon.getMaxDmg() > player.getCurWeapon().getMaxDmg()){
+                                        player.setCurWeapon(weapon);
+                                        minDmg = player.getCurWeapon().getMinDmg();
+                                        maxDmg = player.getCurWeapon().getMaxDmg();
+
+                                    }
+                                }
+                            }  
+                    }
                     break;
                 case "look":
                     break;
