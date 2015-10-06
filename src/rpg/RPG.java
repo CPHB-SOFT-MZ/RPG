@@ -28,7 +28,7 @@ public class RPG {
         boolean playing = true;
         Room currentRoom;
         currentRoom = build.getRoom(0);
-        player.setCurWeapon(new Weapon("Dagger", "Short dagger", 1, 3));
+        player.setCurWeapon(new Weapon("Fists", "You have no weapon - but you can punch the monsters in the face with your BROOOOOO-FIST!", 1, 2));
         Random rnd = new Random();
         int maxDmg = player.getCurWeapon().getMaxDmg();
         int minDmg = player.getCurWeapon().getMinDmg();
@@ -37,6 +37,9 @@ public class RPG {
         Room prevRoom = null;
         boolean bound = false;
         
+        
+        
+        controller.write("You find yourself in a dark room. Only wearing some dirty clothes.");
         while(playing){
             String input = controller.read();
             String[] data = input.split(" ");
@@ -50,6 +53,22 @@ public class RPG {
             
             switch(command){
                 case "help":
+                    controller.writeLine("-go");
+                    controller.writeFormatLine("south");
+                    controller.writeFormatLine("north");
+                    controller.writeFormatLine("east");
+                    controller.writeFormatLine("west");
+                    controller.writeFormatLine("back");
+                    
+                    controller.write("-take");
+                    controller.write("-use");
+                    controller.writeFormatLine("potion");
+                    controller.writeFormatLine("key");
+                    controller.writeFormatLine("poison");
+                    controller.write("-look");
+                    controller.write("-attack");
+                    controller.write("-inventory");
+                    controller.write("-quit");
                     break;
                 case "go":
                     error = "I can't go that way!";
@@ -144,6 +163,7 @@ public class RPG {
                     }
                     break;
                 case "look":
+                    controller.writeLine(currentRoom.getRoomDesc());
                     break;
                 case "use":
                     switch(value){
@@ -171,6 +191,8 @@ public class RPG {
                         case "key":
                             break;
                         case "poison":
+                            minDmg += 5;
+                            maxDmg += 5;
                             break;
                     }
                     break;

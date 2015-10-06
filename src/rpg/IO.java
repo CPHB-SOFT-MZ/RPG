@@ -33,6 +33,10 @@ public class IO {
         return input;
     }
     
+    public void writeFormatLine(String message){
+        System.out.println("|--> " + message);
+    }
+    
     
     
 
