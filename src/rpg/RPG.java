@@ -19,7 +19,7 @@ public class RPG {
      */
 
     public static void main(String[] args) {
-
+        
         Builder build = new Builder();
         Scanner scan = new  Scanner(System.in);
         Player player = new Player();
@@ -185,6 +185,10 @@ public class RPG {
                     System.out.println("Goodbye noob...");
                     playing = false;
                     break;
+            }
+            if(player.getCurHP() <= 0){
+                System.out.println("You've died. Game over!");
+                playing = false;
             }
         }
         
