@@ -25,7 +25,7 @@ public class RPG {
         String command;
         String value = "";
         String error;
-        boolean playing = true;
+        boolean playing = false;
         Room currentRoom;
         currentRoom = build.getRoom(0);
         player.setCurWeapon(new Weapon("Fists", "You have no weapon - but you can punch the monsters in the face with your BROOOOOO-FIST!", 1, 2));
@@ -39,9 +39,16 @@ public class RPG {
         
         
         
-        controller.write("You find yourself in a dark room. Only wearing some dirty clothes. \n"
+        
+        
+        controller.writeLine("What's your name young adventurer?");
+        if(!playing){
+            player.setName(controller.read());
+            playing = true;
+            controller.write("You find yourself in a dark room. Only wearing some dirty clothes. \n"
                 + "On the floor is some useful items, pick them up using the take command. \n" 
                 + "Use the help command if you get stuck, and good luck");
+        }
         while(playing){
             String input = controller.read();
             String[] data = input.split(" ");
@@ -52,6 +59,8 @@ public class RPG {
             }else{
                 command = data[0];
             }
+            
+            
             
             switch(command){
                 case "help":
@@ -71,6 +80,13 @@ public class RPG {
                     controller.write("-attack");
                     controller.write("-inventory");
                     controller.write("-quit");
+                    break;
+                case "info":
+                    controller.writeLine("Name: " + player.getName());
+                    controller.write("Level: " + player.getLevel());
+                    controller.write("HP: " + player.getCurHP() + " / " + player.getMaxHP());
+                    controller.write("Equipped weapon: " + player.getCurWeapon());
+                    controller.write("Damage: " + minDmg + " - " + maxDmg);
                     break;
                 case "go":
                     error = "I can't go that way!";
@@ -194,7 +210,14 @@ public class RPG {
                             if (player.getInventory().toString().contains("DoomKey") 
                                     && currentRoom.getRoomNumber() == 14){
                                         controller.writeLine("The DoomKey opens the door");
-                                        build.useKey(14, 15);
+                                        build.useKey(14, 15, "north");
+                            }else{
+                                controller.writeLine("No doors in this room fit your key");
+                            }
+                            if (player.getInventory().toString().contains("GoldKey") 
+                                    && currentRoom.getRoomNumber() == 16){
+                                        controller.writeLine("The GoldKey opens the door");
+                                        build.useKey(16, 17, "north");
                             }else{
                                 controller.writeLine("No doors in this room fit your key");
                             }
@@ -219,6 +242,10 @@ public class RPG {
                         if(enemy.getHP() <= 0){
                             currentRoom.removeEnemy();
                             controller.writeLine("You killed the " + enemy.getName());
+                            player.setLevel(1);
+                            player.setMaxHP(10);
+                            player.setCurHP(player.getLevelHP());
+                            bound = false;
                         }
                     }else{
                         controller.writeLine("There's nothing to attack here");

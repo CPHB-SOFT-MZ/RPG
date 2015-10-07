@@ -75,12 +75,13 @@ public class Builder {
         rooms.get(1).setWest(rooms.get(3));
         rooms.get(1).setSouth(rooms.get(0));
         rooms.get(1).setRoomDesc("A big hall opens in front of you, it's run down and dark but serveral doors lead to other rooms.");
-        rooms.get(1).addEnemy(new Enemy("Skeleton", "A tiny one", 1, 3, 12));
+        
         
         // Second 
         rooms.get(2).setEast(rooms.get(4));
         rooms.get(2).setWest(rooms.get(1));
         rooms.get(2).setRoomDesc("The room is full of rusty old equipment and was problably used for storage, there is a door at the other end.");
+        rooms.get(2).addEnemy(new Enemy("Skeleton", "A tiny one", 1, 3, 12));
         
         //Third
         rooms.get(3).setNorth(rooms.get(10));
@@ -107,7 +108,7 @@ public class Builder {
         rooms.get(7).setNorth(rooms.get(6));
         rooms.get(7).setRoomDesc("This room has no other exits, it is however full of things");
         rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull"));
-        
+        rooms.get(7).addEnemy(new Enemy("Skeleton", "A tiny one", 3, 5, 20));
         //Room 8
         rooms.get(8).setNorth(rooms.get(9));
         rooms.get(8).setSouth(rooms.get(2));
@@ -118,6 +119,7 @@ public class Builder {
         rooms.get(9).setSouth(rooms.get(8));
         rooms.get(9).setWest(rooms.get(11));
         rooms.get(9).setRoomDesc("This room is a dead end, but a shaft leads somewhere");
+        rooms.get(9).addEnemy(new Enemy("Skeleton", "A tiny one", 3, 5, 20));
         
         //Room 10
         rooms.get(10).setNorth(rooms.get(13));
@@ -125,6 +127,7 @@ public class Builder {
         rooms.get(10).setEast(rooms.get(11));
         rooms.get(10).setWest(rooms.get(12));
         rooms.get(10).setRoomDesc("There is doors on all sides, some old signs read exit and kitchen, but you can't tell where they used to point");
+        rooms.get(10).addEnemy(new Enemy("Skeleton", "A tiny one", 4, 6, 24));
         
         //Room 11
         rooms.get(11).setWest(rooms.get(10));
@@ -147,7 +150,9 @@ public class Builder {
         //Room 15
         rooms.get(15).setSouth(rooms.get(14));
         rooms.get(15).setRoomDesc("15");
-        //rooms.get(15).addItem(new Consumable("Old Bicycle Key", "Some ugly key", 1));
+        rooms.get(15).addItem(new Consumable("GoldKey","A key made of pure gold."));
+        rooms.get(15).addEnemy(new Enemy("Skeleton", "A tiny one", 6, 10, 38));
+        
         
         //Room 16
         rooms.get(16).setEast(rooms.get(12));
@@ -166,14 +171,36 @@ public class Builder {
         rooms.get(19).setEast(rooms.get(17));
         rooms.get(19).setWest(rooms.get(20));
         rooms.get(19).setRoomDesc("19");
+        rooms.get(19).addEnemy(new Enemy("Tobias", "", 15, 20, 120));
+        
+        //Room 20
+        rooms.get(20).addItem(new Valuables("Huge Treasure Chest", "Filled with poo and gold coins", 1000));
+        
     }
     
     public Room getRoom(int i){
         return rooms.get(i);
     }
 
-    public void useKey(int curRoom, int unlockRoom) {
-        rooms.get(curRoom).setNorth(rooms.get(unlockRoom));
+    public void useKey(int curRoom, int unlockRoom, String direction) {
+        switch(direction){
+            case "north":
+               rooms.get(curRoom).setNorth(rooms.get(unlockRoom)); 
+                break;
+            case "south":
+               rooms.get(curRoom).setSouth(rooms.get(unlockRoom)); 
+                break;
+            case "east":
+               rooms.get(curRoom).setEast(rooms.get(unlockRoom)); 
+                break;
+            case "west":
+               rooms.get(curRoom).setWest(rooms.get(unlockRoom));
+                break;
+            default:
+                System.out.println("Error");
+                break;
+        }
+
     }
     
     

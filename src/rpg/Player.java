@@ -19,7 +19,9 @@ public class Player {
     private int CurHP = 30;
     private Weapon curWeapon;
     
+    
     public Player(){
+        this.Level = 1;
         inventory = new ArrayList<Item>();
     }
     
@@ -44,7 +46,7 @@ public class Player {
     }
 
     public void setLevel(int Level) {
-        this.Level = Level;
+        this.Level += Level;
     }
 
     public int getMaxHP() {
@@ -52,7 +54,7 @@ public class Player {
     }
 
     public void setMaxHP(int MaxHP) {
-        this.MaxHP = MaxHP;
+        this.MaxHP += MaxHP;
     }
 
     public int getCurHP() {
@@ -69,6 +71,11 @@ public class Player {
     
     public Weapon getCurWeapon(){
         return curWeapon;
+    }
+    
+    public int getLevelHP(){
+        int hp = getCurHP() + ((getMaxHP() - getCurHP()) / 3);
+        return hp;
     }
     
     
