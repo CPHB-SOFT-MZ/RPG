@@ -128,39 +128,52 @@ public class Builder {
         
         //Room 11
         rooms.get(11).setWest(rooms.get(10));
+        rooms.get(11).setRoomDesc("11");
         
         //Room 12
         rooms.get(12).setEast(rooms.get(10));
         rooms.get(12).setWest(rooms.get(16));
+        rooms.get(12).setRoomDesc("12");
         
         //Room 13
         rooms.get(13).setSouth(rooms.get(10));
         rooms.get(13).setEast(rooms.get(14));
+        rooms.get(13).setRoomDesc("13");
         
         //Room 14
         rooms.get(14).setWest(rooms.get(13));
+        rooms.get(14).setRoomDesc("14");
         
         //Room 15
         rooms.get(15).setSouth(rooms.get(14));
+        rooms.get(15).setRoomDesc("15");
         //rooms.get(15).addItem(new Consumable("Old Bicycle Key", "Some ugly key", 1));
         
         //Room 16
         rooms.get(16).setEast(rooms.get(12));
+        rooms.get(16).setRoomDesc("16");
         
         //Room 17
         rooms.get(17).setNorth(rooms.get(18));
         rooms.get(17).setSouth(rooms.get(16));
+        rooms.get(17).setRoomDesc("17");
         
         //Room 18
         rooms.get(18).setSouth(rooms.get(17));
+        rooms.get(18).setRoomDesc("18");
         
         // Room 19
         rooms.get(19).setEast(rooms.get(17));
         rooms.get(19).setWest(rooms.get(20));
+        rooms.get(19).setRoomDesc("19");
     }
     
     public Room getRoom(int i){
         return rooms.get(i);
+    }
+
+    public void useKey(int curRoom, int unlockRoom) {
+        rooms.get(curRoom).setNorth(rooms.get(unlockRoom));
     }
     
     

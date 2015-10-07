@@ -39,7 +39,9 @@ public class RPG {
         
         
         
-        controller.write("You find yourself in a dark room. Only wearing some dirty clothes.");
+        controller.write("You find yourself in a dark room. Only wearing some dirty clothes. \n"
+                + "On the floor is some useful items, pick them up using the take command. \n" 
+                + "Use the help command if you get stuck, and good luck");
         while(playing){
             String input = controller.read();
             String[] data = input.split(" ");
@@ -189,6 +191,13 @@ public class RPG {
                             }
                             break;
                         case "key":
+                            if (player.getInventory().toString().contains("DoomKey") 
+                                    && currentRoom.getRoomNumber() == 14){
+                                        controller.writeLine("The DoomKey opens the door");
+                                        build.useKey(14, 15);
+                            }else{
+                                controller.writeLine("No doors in this room fit your key");
+                            }
                             break;
                         case "poison":
                             minDmg += 5;
