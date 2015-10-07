@@ -82,6 +82,7 @@ public class Builder {
         rooms.get(2).setWest(rooms.get(1));
         rooms.get(2).setRoomDesc("The room is full of rusty old equipment and was problably used for storage, there is a door at the other end.");
         rooms.get(2).addEnemy(new Enemy("Skeleton", "A tiny one", 1, 3, 12));
+        rooms.get(2).addItem(new Consumable("Potion", "Heals up to full HP"));
         
         //Third
         rooms.get(3).setNorth(rooms.get(10));
@@ -97,6 +98,7 @@ public class Builder {
         rooms.get(5).setSouth(rooms.get(4));
         rooms.get(5).setEast(rooms.get(6));
         rooms.get(5).setWest(rooms.get(8));
+        rooms.get(5).addEnemy(new Enemy("Dwarf", "A red-eyed dwarf. Looks pretty scary.", 3, 6, 16));
         rooms.get(5).setRoomDesc("There is nothing of interest here. Two doors lead deeper into the mine");
         
         //Room 6
@@ -109,6 +111,8 @@ public class Builder {
         rooms.get(7).setRoomDesc("This room has no other exits, it is however full of things");
         rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull"));
         rooms.get(7).addEnemy(new Enemy("Skeleton", "A tiny one", 3, 5, 20));
+        rooms.get(7).addItem(new Valuables("Ruby", "Shining bright lika a.... Or... Almost like a diamond", 200));
+        rooms.get(7).addItem(new Weapon("Long Sword", "A loooooooooooooooooooooooooooooooong sword", 8, 12));
         //Room 8
         rooms.get(8).setNorth(rooms.get(9));
         rooms.get(8).setSouth(rooms.get(2));
@@ -120,6 +124,7 @@ public class Builder {
         rooms.get(9).setWest(rooms.get(11));
         rooms.get(9).setRoomDesc("This room is a dead end, but a shaft leads somewhere");
         rooms.get(9).addEnemy(new Enemy("Skeleton", "A tiny one", 3, 5, 20));
+        rooms.get(9).addItem(new Valuables("Ruby", "Shining bright lika a.... Or... Almost like a diamond", 200));
         
         //Room 10
         rooms.get(10).setNorth(rooms.get(13));
@@ -145,6 +150,7 @@ public class Builder {
         
         //Room 14
         rooms.get(14).setWest(rooms.get(13));
+        rooms.get(14).setSouth(rooms.get(1));
         rooms.get(14).setRoomDesc("14");
         
         //Room 15
@@ -152,11 +158,15 @@ public class Builder {
         rooms.get(15).setRoomDesc("15");
         rooms.get(15).addItem(new Consumable("GoldKey","A key made of pure gold."));
         rooms.get(15).addEnemy(new Enemy("Skeleton", "A tiny one", 6, 10, 38));
+        rooms.get(15).addItem(new Valuables("Ruby", "Shining bright lika a.... Or... Almost like a diamond", 200));
+        rooms.get(15).addItem(new Consumable("Potion", "Heals up to full HP"));
+        rooms.get(15).addItem(new Weapon("Skull Cleaver", "Cleaves skulls wide open", 13, 17));
         
         
         //Room 16
         rooms.get(16).setEast(rooms.get(12));
         rooms.get(16).setRoomDesc("16");
+        rooms.get(16).addItem(new Consumable("GoldKey","A Key ingraved with a skull"));
         
         //Room 17
         rooms.get(17).setNorth(rooms.get(18));
@@ -166,15 +176,18 @@ public class Builder {
         //Room 18
         rooms.get(18).setSouth(rooms.get(17));
         rooms.get(18).setRoomDesc("18");
+        rooms.get(18).addItem(new Valuables("Pearl", "A shiny small pearl", 50));
         
         // Room 19
         rooms.get(19).setEast(rooms.get(17));
         rooms.get(19).setWest(rooms.get(20));
         rooms.get(19).setRoomDesc("19");
         rooms.get(19).addEnemy(new Enemy("Tobias", "", 15, 20, 120));
+        rooms.get(19).addItem(new Valuables("Pearl", "A shiny small pearl", 50));
         
         //Room 20
-        rooms.get(20).addItem(new Valuables("Huge Treasure Chest", "Filled with poo and gold coins", 1000));
+        rooms.get(20).addItem(new Valuables("Silver Necklace", "Shining bright", 800));
+        rooms.get(20).addItem(new Valuables("Huge Treasure Chest", "Filled with poo and gold coins", 2000));
         
     }
     

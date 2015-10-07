@@ -33,4 +33,6 @@ public class Weapon extends Item {
     public void setMinDmg(int minDmg) {
         this.minDmg = minDmg;
     }
+    
+    
 }

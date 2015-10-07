@@ -32,4 +32,8 @@ public abstract class Item {
         return name;
     }
     
+    public String getDesc(){
+        return description;
+    }
+    
 }

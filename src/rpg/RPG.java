@@ -6,7 +6,7 @@
 package rpg;
 
 import java.util.Random;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  *
@@ -24,10 +24,11 @@ public class RPG {
         Player player = new Player();
         String command;
         String value = "";
+        int gold = 0;
         String error;
         boolean playing = false;
         Room currentRoom;
-        currentRoom = build.getRoom(0);
+        currentRoom = build.getRoom(16);
         player.setCurWeapon(new Weapon("Fists", "You have no weapon - but you can punch the monsters in the face with your BROOOOOO-FIST!", 1, 2));
         Random rnd = new Random();
         int maxDmg = player.getCurWeapon().getMaxDmg();
@@ -85,8 +86,10 @@ public class RPG {
                     controller.writeLine("Name: " + player.getName());
                     controller.write("Level: " + player.getLevel());
                     controller.write("HP: " + player.getCurHP() + " / " + player.getMaxHP());
-                    controller.write("Equipped weapon: " + player.getCurWeapon());
+                    controller.write("Equipped weapon: " + player.getCurWeapon() + ", " + player.getCurWeapon().getDesc());
                     controller.write("Damage: " + minDmg + " - " + maxDmg);
+                    controller.write("Valuables in gold: " + gold);
+                            
                     break;
                 case "go":
                     error = "I can't go that way!";
@@ -141,11 +144,13 @@ public class RPG {
                             controller.writeLine("You want to go where?");
                             break;
                     }
-
+                    if(currentRoom.getItems() != null && !bound){
+                        controller.write("I see some items that might be useful in this room");
+                    }
                 if(currentRoom.getEnemy() != null){
                     bound = true;
                     enemy = currentRoom.getEnemy();
-                    controller.writeLine("A " + enemy.getName() + " appears");
+                    controller.writeLine("A " + enemy.getName() + " appears. " + enemy.getDescription());
                     int enemyDmg = enemy.getDmgActual();
                     player.setCurHP(player.getCurHP()-enemyDmg);
                     controller.write("The " + enemy.getName() + " hits you for: " + enemyDmg);
@@ -177,7 +182,16 @@ public class RPG {
 
                                     }
                                 }
-                            }  
+                            }
+                            for(int i = 0; i < player.getInventory().size(); i++){
+                                Item item = player.getInventory().get(i);
+                                if(item instanceof Valuables){
+                                    Valuables valuables = (Valuables) item;
+                                    gold += valuables.getValue();
+                                }
+                            }
+                    }else{
+                        controller.write("I can't pick up anything. A monster is in the way");
                     }
                     break;
                 case "look":
@@ -211,10 +225,8 @@ public class RPG {
                                     && currentRoom.getRoomNumber() == 14){
                                         controller.writeLine("The DoomKey opens the door");
                                         build.useKey(14, 15, "north");
-                            }else{
-                                controller.writeLine("No doors in this room fit your key");
                             }
-                            if (player.getInventory().toString().contains("GoldKey") 
+                            else if (player.getInventory().toString().contains("GoldKey") 
                                     && currentRoom.getRoomNumber() == 16){
                                         controller.writeLine("The GoldKey opens the door");
                                         build.useKey(16, 17, "north");
