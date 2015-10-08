@@ -87,28 +87,28 @@ public class Builder {
         //Third
         rooms.get(3).setNorth(rooms.get(10));
         rooms.get(3).setEast(rooms.get(1));
-        rooms.get(3).setRoomDesc("Most of the celing has caved in, but it is still possible to reach another door");
+        rooms.get(3).setRoomDesc("Most of the celing has caved in, but it is still possible to reach another door.");
         
         //Room 4
         rooms.get(4).setNorth(rooms.get(5));
         rooms.get(4).setWest(rooms.get(2));
-        rooms.get(4).setRoomDesc("The floor resembles a small lake, here the air stinks of mould");
+        rooms.get(4).setRoomDesc("The floor resembles a small lake, here the air stinks of mould.");
         
         //Room 5
         rooms.get(5).setSouth(rooms.get(4));
         rooms.get(5).setEast(rooms.get(6));
         rooms.get(5).setWest(rooms.get(8));
         rooms.get(5).addEnemy(new Enemy("Dwarf", "A red-eyed dwarf. Looks pretty scary.", 3, 6, 16));
-        rooms.get(5).setRoomDesc("There is nothing of interest here. Two doors lead deeper into the mine");
+        rooms.get(5).setRoomDesc("There is nothing of interest here. Two doors lead deeper into the mine.");
         
         //Room 6
         rooms.get(6).setSouth(rooms.get(7));
         rooms.get(6).setWest(rooms.get(5));
-        rooms.get(6).setRoomDesc("This room is in remarkable condition, and is full of comfortable chairs");
+        rooms.get(6).setRoomDesc("This room is in remarkable condition, and is full of comfortable chairs.");
         
         //Room 7
         rooms.get(7).setNorth(rooms.get(6));
-        rooms.get(7).setRoomDesc("This room has no other exits, it is however full of things");
+        rooms.get(7).setRoomDesc("This room has no other exits, it is however full of things.");
         rooms.get(7).addItem(new Consumable("DoomKey","A Key ingraved with a skull"));
         rooms.get(7).addEnemy(new Enemy("Skeleton", "A tiny one", 3, 5, 20));
         rooms.get(7).addItem(new Valuables("Ruby", "Shining bright lika a.... Or... Almost like a diamond", 200));
@@ -117,7 +117,7 @@ public class Builder {
         rooms.get(8).setNorth(rooms.get(9));
         rooms.get(8).setSouth(rooms.get(2));
         rooms.get(8).setEast(rooms.get(5));
-        rooms.get(8).setRoomDesc("Here the floor is completely red, there is a door on one side and a hole leading down into antoher room");
+        rooms.get(8).setRoomDesc("Here the floor is completely red, there is a door on one side and a hole leading down into antoher room.");
         
         //Room 9
         rooms.get(9).setSouth(rooms.get(8));
@@ -131,31 +131,31 @@ public class Builder {
         rooms.get(10).setSouth(rooms.get(3));
         rooms.get(10).setEast(rooms.get(11));
         rooms.get(10).setWest(rooms.get(12));
-        rooms.get(10).setRoomDesc("There is doors on all sides, some old signs read exit and kitchen, but you can't tell where they used to point");
+        rooms.get(10).setRoomDesc("There is doors on all sides, some old signs read exit and kitchen, but you can't tell where they used to point.");
         rooms.get(10).addEnemy(new Enemy("Skeleton", "A tiny one", 4, 6, 24));
         
         //Room 11
         rooms.get(11).setWest(rooms.get(10));
-        rooms.get(11).setRoomDesc("11");
+        rooms.get(11).setRoomDesc("This room is empty, a big hole in the celing connects it to another room.");
         
         //Room 12
         rooms.get(12).setEast(rooms.get(10));
         rooms.get(12).setWest(rooms.get(16));
-        rooms.get(12).setRoomDesc("12");
+        rooms.get(12).setRoomDesc("This long room is empty and appears to work as a connection to another part of the mine.");
         
         //Room 13
         rooms.get(13).setSouth(rooms.get(10));
         rooms.get(13).setEast(rooms.get(14));
-        rooms.get(13).setRoomDesc("13");
+        rooms.get(13).setRoomDesc("The room is full of old minecarts, they are all rusty and broken.");
         
         //Room 14
         rooms.get(14).setWest(rooms.get(13));
         rooms.get(14).setSouth(rooms.get(1));
-        rooms.get(14).setRoomDesc("14");
+        rooms.get(14).setRoomDesc("The room is dominated by a big door, a tunnel leads down somewhere unknown.");
         
         //Room 15
         rooms.get(15).setSouth(rooms.get(14));
-        rooms.get(15).setRoomDesc("15");
+        rooms.get(15).setRoomDesc("The room is full of torture devices and miscellaneous items.");
         rooms.get(15).addItem(new Consumable("GoldKey","A key made of pure gold."));
         rooms.get(15).addEnemy(new Enemy("Skeleton", "A tiny one", 6, 10, 38));
         rooms.get(15).addItem(new Valuables("Ruby", "Shining bright lika a.... Or... Almost like a diamond", 200));
@@ -165,27 +165,28 @@ public class Builder {
         
         //Room 16
         rooms.get(16).setEast(rooms.get(12));
-        rooms.get(16).setRoomDesc("16");
+        rooms.get(16).setRoomDesc("The walls here are full of hangers but nothing is left behind. The northern door requires a key.");
         rooms.get(16).addItem(new Consumable("GoldKey","A Key ingraved with a skull"));
         
         //Room 17
         rooms.get(17).setNorth(rooms.get(18));
         rooms.get(17).setSouth(rooms.get(16));
-        rooms.get(17).setRoomDesc("17");
+        rooms.get(17).setRoomDesc("Most of the celing is caved in, the northern door is open.");
         
         //Room 18
         rooms.get(18).setSouth(rooms.get(17));
-        rooms.get(18).setRoomDesc("18");
+        rooms.get(18).setRoomDesc("18 riddle");
         rooms.get(18).addItem(new Valuables("Pearl", "A shiny small pearl", 50));
         
         // Room 19
         rooms.get(19).setEast(rooms.get(17));
         rooms.get(19).setWest(rooms.get(20));
-        rooms.get(19).setRoomDesc("19");
+        rooms.get(19).setRoomDesc("Last boss room 19");
         rooms.get(19).addEnemy(new Enemy("Tobias", "", 15, 20, 120));
         rooms.get(19).addItem(new Valuables("Pearl", "A shiny small pearl", 50));
         
         //Room 20
+        rooms.get(20).setRoomDesc("You have reached the final room, a golden treasure chest sits on the floor.");
         rooms.get(20).addItem(new Valuables("Silver Necklace", "Shining bright", 800));
         rooms.get(20).addItem(new Valuables("Huge Treasure Chest", "Filled with poo and gold coins", 2000));
         
