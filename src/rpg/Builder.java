@@ -192,6 +192,10 @@ public class Builder {
         
     }
     
+    public List<Room> getRooms(){
+        return this.rooms;
+    }
+    
     public Room getRoom(int i){
         return rooms.get(i);
     }

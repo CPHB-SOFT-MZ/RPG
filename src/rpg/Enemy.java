@@ -5,12 +5,14 @@
  */
 package rpg;
 
+import java.util.Random;
+
 /**
  *
  * @author Emil Laptop
  */
 public class Enemy {
-    
+    Random rnd = new Random();
     private final String name;
     private final String description;
     private final int dmgMin;
@@ -52,7 +54,7 @@ public class Enemy {
     }
     
     public int getDmgActual(){
-        this.dmgActual = (int) Math.floor((Math.random() * dmgMax) + dmgMin);
+        this.dmgActual = rnd.nextInt((dmgMax + 1) - dmgMin) + dmgMin;
         return dmgActual;
     }
     
