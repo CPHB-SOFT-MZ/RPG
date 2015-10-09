@@ -32,6 +32,9 @@ public class Player {
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+    public void resetInventory() {
+        inventory.clear();
+    }
 
     public String getName() {
         return Name;
@@ -55,6 +58,10 @@ public class Player {
 
     public void setMaxHP(int MaxHP) {
         this.MaxHP += MaxHP;
+    }
+    public void resetHP() {
+        this.MaxHP = 30;
+        this.CurHP = 30;
     }
 
     public int getCurHP() {

@@ -28,7 +28,7 @@ public class RPG {
         String error;
         boolean playing = false;
         Room currentRoom;
-        currentRoom = build.getRoom(16);
+        currentRoom = build.getRoom(0);
         player.setCurWeapon(new Weapon("Fists", "You have no weapon - but you can punch the monsters in the face with your BROOOOOO-FIST!", 1, 2));
         Random rnd = new Random();
         int maxDmg = player.getCurWeapon().getMaxDmg();
@@ -37,9 +37,6 @@ public class RPG {
         Enemy enemy;
         Room prevRoom = null;
         boolean bound = false;
-        
-        
-        
         
         
         controller.writeLine("What's your name young adventurer?");
@@ -193,6 +190,23 @@ public class RPG {
                     }else{
                         controller.write("I can't pick up anything. A monster is in the way");
                     }
+                    
+                    if(currentRoom.getRoomNumber() == 20){
+                        controller.writeLine("You have won the game!");
+                        
+                        controller.writeLine("Your accomplishments: ");
+                        controller.writeLine("Your inventory:");
+                            for(Item item : player.getInventory()){
+                                controller.write(item);
+                            }
+                            controller.writeLine("Name: " + player.getName());
+                            controller.write("Level: " + player.getLevel());
+                            controller.write("HP: " + player.getCurHP() + " / " + player.getMaxHP());
+                            controller.write("Equipped weapon: " + player.getCurWeapon() + ", " + player.getCurWeapon().getDesc());
+                            controller.write("Damage: " + minDmg + " - " + maxDmg);
+                            controller.write("Valuables in gold: " + gold);
+
+                    }
                     break;
                 case "look":
                     controller.writeLine(currentRoom.getRoomDesc());
@@ -274,10 +288,45 @@ public class RPG {
                     controller.writeLine("Goodbye noob...");
                     playing = false;
                     break;
+                case "y":
+                    if(player.getCurHP() <= 0){
+                        build = new Builder();
+                        player = new Player();
+                        gold = 0;
+                        currentRoom = build.getRoom(0);
+                        player.setCurWeapon(new Weapon("Fists", "You have no weapon - but you can punch the monsters in the face with your BROOOOOO-FIST!", 1, 2));
+                        prevRoom = null;
+                        bound = false;
+                        player.resetInventory();
+                        player.resetHP();
+                        controller.writeLine("What's your name young adventurer?");
+
+                        player.setName(controller.read());
+                        controller.write("You find yourself in a dark room. Only wearing some dirty clothes. \n"
+                            + "On the floor is some useful items, pick them up using the take command. \n" 
+                            + "Use the help command if you get stuck, and good luck");
+                    }
+                    break;
+                case "n":
+                    if(player.getCurHP() <= 0){
+                        controller.writeLine("Your accomplishments: ");
+                        controller.writeLine("Your inventory:");
+                            for(Item item : player.getInventory()){
+                                controller.write(item);
+                            }
+                            controller.writeLine("Name: " + player.getName());
+                            controller.write("Level: " + player.getLevel());
+                            controller.write("HP: " + player.getCurHP() + " / " + player.getMaxHP());
+                            controller.write("Equipped weapon: " + player.getCurWeapon() + ", " + player.getCurWeapon().getDesc());
+                            controller.write("Damage: " + minDmg + " - " + maxDmg);
+                            controller.write("Valuables in gold: " + gold);
+
+                        playing = false;
+                    }
+                    break;
             }
             if(player.getCurHP() <= 0){
-                controller.writeLine("You've died. Game over!");
-                playing = false;
+                controller.writeLine("You've died. Game over! Press 'y' if you want to continue playing. Else press 'n' to quit");
             }
         }
         
